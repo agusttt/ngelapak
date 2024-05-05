@@ -34,19 +34,40 @@ export default function ProductList() {
     }
 
     console.log(query.data.data)
+    // return (
+    //     <div className="relative flex flex-wrap -mx-4">
+    //         <ItemProducts
+    //             imageproduct="images/81fPKd-2AYL._AC_SL1500_.JPG"
+    //             buttonproduct="BUY NOW"
+    //             category="MENS"
+    //             titleproduct="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+    //             prices="$109.95" />
+    //         <ItemProducts category="WOMEN" />
+    //         <ItemProducts />
+    //         <ItemProducts />
+    //         <ItemProducts />
+    //         <ItemProducts />
+    //     </div>
+    // )
+
+
+    const myData = query.data.data
     return (
         <div className="relative flex flex-wrap -mx-4">
-            <ItemProducts
-                imageproduct="images/81fPKd-2AYL._AC_SL1500_.JPG"
-                buttonproduct="BUY NOW"
-                category="MENS"
-                titleproduct="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
-                prices="$109.95" />
-            <ItemProducts category="WOMEN" />
-            <ItemProducts />
-            <ItemProducts />
-            <ItemProducts />
-            <ItemProducts />
+            {
+                // Mapping data dengan Props
+                myData.map(item => {
+                    return (
+                        <ItemProducts
+                            imageproduct={item.image}
+                            buttonproduct={`product/${item.id}`}
+                            category={item.category}
+                            titleproduct={item.title}
+                            rate={parseInt(`${item.rating.rate}`)}
+                        />
+                    )
+                })
+            }
         </div>
     )
 }
